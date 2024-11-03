@@ -118,12 +118,12 @@ const App = () => {
             onChange={(e) => setIdInput(e.target.value)}
             className="form-control id-input"
           />
-          <button type="button" className="btn btn-outline-light" onClick={handleSearch}>Поиск</button>
+          <button type="button"  style={{marginTop:"20px",fontSize:"20px"}} className="toggle-button" onClick={handleSearch}>Поиск</button>
         </div>
       </div>
 
       <div className="progress-section">
-        <div className="progress" style={{ backgroundColor: 'red' }}>
+        <div className="progress" style={{ backgroundColor: '#EF798A',height:"30px" , marginTop:"20px"}}>
           <div
             className="progress-bar bg-success"
             role="progressbar"
@@ -135,17 +135,20 @@ const App = () => {
             {positiveReviewPercentage.toFixed(1)}% Положительный
           </div>
         </div>
-        <p>{positiveCount} положительных отзывов, {negativeCount} отрицательных отзывов</p>
+        <p style={{ marginTop: "20px", fontSize: "21px" }}>
+  <span className="positive-text">{positiveCount} положительных</span> отзывов,{" "}
+  {negativeCount} отрицательных отзывов
+</p>
       </div>
 
       <div className="chart-score-container">
-        <div className="score-conclusion-container">
+        <div className="score-conclusion-container" style={{width:"800px" ,backgroundColor:"#F8F9FA" ,borderRadius:"20px"}}>
           <div className="score-display">
             <h3 className="score-title">Оценка</h3>
             <h2 className="score-value">{score}/5</h2>
           </div>
           <div className="conclusions">
-            <h3>Общая характеристика:</h3>
+            <h3>Общая характеристика</h3>
             <p className="conclusion">{conclusion}</p>
           </div>
         </div>
@@ -162,7 +165,7 @@ const App = () => {
           { label: 'Командная работа', score: teamwork, description: teamworkDescription, key: 'teamwork' },
           { label: 'Адаптивность', score: adaptability, description: adaptabilityDescription, key: 'adaptability' },
         ].map(({ label, score, description, key }) => (
-          <div key={key} className="evaluation-section">
+          <div key={key} className="evaluation-section" style={{marginBottom:"20px"}}> 
             <div className="section-header">
               <h3>{label} {score}/5</h3>
               <button className="toggle-button" onClick={() => toggleSection(key)}>
@@ -178,8 +181,8 @@ const App = () => {
         ))}
       </div>
 
-      <div className="columns-container">
-        <div className="column positive-column">
+      <div className="columns-container" style={{marginTop:"100px"}} >
+        <div  className="column positive-column" >
           <h3>Позитивные качества</h3>
           <ul>
             <li>{positiveQuality}</li>
@@ -193,20 +196,20 @@ const App = () => {
         </div>
       </div>
 
-      <div className="selfreview">
+      <div className="compatibility-section" style={{marginTop:"100px"}} >
         <h3>Самооценивание:</h3>
         <p>{selfSummary}</p>
       </div>
 
       {/* Новый раздел для SummaryByOwnReviews */}
       {summaryByOwnReviews && (
-        <div className="summary-by-own-reviews">
-          <h3>Summary By Own Reviews:</h3>
+        <div className="compatibility-section" /* className="summary-by-own-reviews"*/>
+          <h3>Мнение о колегах:</h3>
           <p>{summaryByOwnReviews}</p>
         </div>
       )}
 
-      <div className="compatibility-section">
+      <div className="compatibility-section" style={{marginTop:"40px"}} >
         <h2>Совместимость</h2>
         <div className="input-section">
           <label htmlFor="compareIdInput">Сравнить с ID:</label>
@@ -217,7 +220,7 @@ const App = () => {
             onChange={(e) => setCompareIdInput(e.target.value)}
             className="form-control"
           />
-          <button type="button" className="btn btn-outline-primary" onClick={handleCompare}>Проверить</button>
+          <button type="button" className="btn btn-outline-primary"  style={{marginTop:"20px",fontSize:"20px"}} onClick={handleCompare}>Проверить</button>
         </div>
         {compatibility !== null && (
           <div className="compatibility-result">

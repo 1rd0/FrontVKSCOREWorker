@@ -16,8 +16,9 @@ body {
  
   width: 80%;
   margin: auto;
+ 
   text-align: center;
-  font-family: 'Roboto', sans-serif; /* Keep font settings */
+  font-family: 'Segoe UI', sans-serif; /* Keep font settings */
   position: relative;
   overflow: hidden;
   padding-bottom: 100px; /* Add extra space for waves */
@@ -77,10 +78,14 @@ h1 {
 /* Chart and Score */
 .chart-score-container {
   display: flex;
-   margin-top: 20px;
-  margin-right: 200px;
-   margin-bottom: 70px;
+  justify-content: center; /* Центрирование элементов по горизонтали */
+  align-items: center; /* Центрирование элементов по вертикали */
+  margin-top: 20px;
+  margin-bottom: 70px;
+  gap: 50px; /* Пространство между блоками */
 }
+
+
 
 .score-display, .conclusions {
   color: #333;
@@ -92,17 +97,26 @@ h1 {
 }
 
 .radar-chart-wrapper {
-  margin-left: 400px;
-   width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
   height: 500px;
+  margin: 0 auto; /* Центрирует контейнер по горизонтали */
 }
+
+.radar-chart-container {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* Evaluation Sections */
 /* Individual Evaluation Section Styling with Gradient */
 /* Основной стиль для evaluation-section */
 .evaluation-section {
-  color: white;
-  background: linear-gradient( #3554B9, #333232);
+  color: #fdf4f4;
+  background: linear-gradient( #3554B9, #1e316f);
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -122,6 +136,9 @@ h1 {
 .section-header {
   display: flex;
   justify-content: space-between;
+}
+.positive-text {
+  color: white; /* Задайте нужный цвет */
 }
 
 .toggle-button {
@@ -149,6 +166,9 @@ h1 {
   padding: 15px;
   border-radius: 10px;
 }
+ 
+
+
 
 .positive-column {
   background: linear-gradient( #B8EEBF,#6EC08E);
