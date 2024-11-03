@@ -27,6 +27,13 @@ const App = () => {
   const [adaptability, setAdaptability] = useState(0);
   const [positiveReviewPercentage, setPositiveReviewPercentage] = useState(0);
 
+  // New states for descriptions
+  const [leadershipDescription, setLeadershipDescription] = useState('');
+  const [communicationDescription, setCommunicationDescription] = useState('');
+  const [problemSolvingDescription, setProblemSolvingDescription] = useState('');
+  const [teamworkDescription, setTeamworkDescription] = useState('');
+  const [adaptabilityDescription, setAdaptabilityDescription] = useState('');
+
   const handleSearch = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/get/summary?id=${idInput}`);
@@ -35,15 +42,39 @@ const App = () => {
 
       setScore(data.score);
       setConclusion(data.summary);
-      setPositiveCount(data.positiveReviewCount);
-      setNegativeCount(data.AllReviewCount - data.positiveReviewCount);
-      setPositiveReviewPercentage((data.positiveReviewCount / data.AllReviewCount) * 100);
+      setPositiveCount(data.positiveReviewCount || 0);
+      setNegativeCount((data.allReviewCount || 0) - (data.positiveReviewCount || 0));
+      setPositiveReviewPercentage(
+        data.allReviewCount ? ((data.positiveReviewCount / data.allReviewCount) * 100) : 0
+      );
 
-      setLeadership(data.scoreCriteria.Leadership.score);
-      setCommunication(data.scoreCriteria.CommunicationSkills.score);
-      setProblemSolving(data.scoreCriteria.ProblemSolving.score);
-      setTeamwork(data.scoreCriteria.Teamwork.score);
-      setAdaptability(data.scoreCriteria.Adaptability.score);
+      // Map `scoreCriteria` data to corresponding state variables
+      data.scoreCriteria.forEach(criteria => {
+        switch (criteria.type) {
+          case 0:
+            setLeadership(criteria.score);
+            setLeadershipDescription(criteria.description);
+            break;
+          case 1:
+            setCommunication(criteria.score);
+            setCommunicationDescription(criteria.description);
+            break;
+          case 2:
+            setProblemSolving(criteria.score);
+            setProblemSolvingDescription(criteria.description);
+            break;
+          case 3:
+            setTeamwork(criteria.score);
+            setTeamworkDescription(criteria.description);
+            break;
+          case 4:
+            setAdaptability(criteria.score);
+            setAdaptabilityDescription(criteria.description);
+            break;
+          default:
+            break;
+        }
+      });
 
       setPositiveQuality(data.positiveQuality || 'Позитивные качества не указаны');
       setNegativeQuality(data.negativeQuality || 'Негативные качества не указаны');
@@ -55,17 +86,6 @@ const App = () => {
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
-
-  const getEvaluationText = (section) => {
-    const evaluations = {
-      leadership: leadership,
-      communication: communication,
-      problemSolving: problemSolving,
-      teamwork: teamwork,
-      adaptability: adaptability,
-    };
-    return evaluations[section];
   };
 
   return (
@@ -103,36 +123,39 @@ const App = () => {
 
       {/* Container for Radar Chart, Score, and Conclusions */}
       <div className="chart-score-container">
-      <div className="chart-score-container">
-  <div className="score-conclusion-container">
-    <div className="score-display">
-      <h3 className="score-title">Score</h3>
-      <h2 className="score-value">{score}/5</h2>
-    </div>
-    <div className="conclusions">
-      <h3>Conclusions:</h3>
-      <p className="conclusion">{conclusion}</p>
-    </div>
-  </div>
-  <div className="radar-chart-wrapper">
-    <RadarChart data={[leadership, communication, problemSolving, teamwork, adaptability]} />
-  </div>
-</div>
-
+        <div className="score-conclusion-container">
+          <div className="score-display">
+            <h3 className="score-title">Score</h3>
+            <h2 className="score-value">{score}/5</h2>
+          </div>
+          <div className="conclusions">
+            <h3>Conclusions:</h3>
+            <p className="conclusion">{conclusion}</p>
+          </div>
+        </div>
+        <div className="radar-chart-wrapper">
+          <RadarChart data={[leadership, communication, problemSolving, teamwork, adaptability]} />
+        </div>
       </div>
 
       <div className="evaluation-sections">
-        {['leadership', 'communication', 'problemSolving', 'teamwork', 'adaptability'].map(section => (
-          <div key={section} className="evaluation-section">
+        {[
+          { label: 'Leadership', score: leadership, description: leadershipDescription, key: 'leadership' },
+          { label: 'Communication', score: communication, description: communicationDescription, key: 'communication' },
+          { label: 'Problem Solving', score: problemSolving, description: problemSolvingDescription, key: 'problemSolving' },
+          { label: 'Teamwork', score: teamwork, description: teamworkDescription, key: 'teamwork' },
+          { label: 'Adaptability', score: adaptability, description: adaptabilityDescription, key: 'adaptability' },
+        ].map(({ label, score, description, key }) => (
+          <div key={key} className="evaluation-section">
             <div className="section-header">
-              <h3>{section.charAt(0).toUpperCase() + section.slice(1)} Evaluation</h3>
-              <button className="toggle-button" onClick={() => toggleSection(section)}>
-                {expandedSections[section] ? 'Hide' : 'Show'} Details
+              <h3>{label} (Score: {score}/5)</h3>
+              <button className="toggle-button" onClick={() => toggleSection(key)}>
+                {expandedSections[key] ? 'Hide' : 'Show'} Details
               </button>
             </div>
-            {expandedSections[section] && (
+            {expandedSections[key] && (
               <div className="evaluation-content">
-                <p>{getEvaluationText(section)}</p>
+                <p>{description || "Description not available"}</p> {/* Displaying the description */}
               </div>
             )}
           </div>
