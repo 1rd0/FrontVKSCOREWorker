@@ -6,7 +6,7 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 const RadarChart = ({ data }) => {
-  const labels = ['Лидерство', 'Коммуникативность', 'Решение проблем', 'Командная работа', 'Адаптивный'];
+  const labels = ['Командная работа', 'Коммуникативный', 'Решение проблем', 'Адаптивный', 'Лидерство'];
 
   const chartData = {
     labels: labels,

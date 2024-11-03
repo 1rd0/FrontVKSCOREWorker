@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RadarChart from './RadarChart';
-
+ 
 const App = () => {
   const [idInput, setIdInput] = useState('');
   const [compareIdInput, setCompareIdInput] = useState('');
@@ -136,8 +136,8 @@ const App = () => {
           </div>
         </div>
         <p style={{ marginTop: "20px", fontSize: "21px" }}>
-  <span className="positive-text">{positiveCount} положительных</span> отзывов,{" "}
-  {negativeCount} отрицательных отзывов
+  <span className="positive-text">{positiveCount} положительных</span>,{" "}
+  {negativeCount}   отрицательных 
 </p>
       </div>
 
@@ -149,7 +149,7 @@ const App = () => {
           </div>
           <div className="conclusions">
             <h3>Общая характеристика</h3>
-            <p className="conclusion">{conclusion}</p>
+            <p className="conclusion" style={{textAlign:"justify"}}>{conclusion}</p>
           </div>
         </div>
         <div className="radar-chart-wrapper">
@@ -174,7 +174,7 @@ const App = () => {
             </div>
             {expandedSections[key] && (
               <div className="evaluation-content">
-                <p>{description || "Нет инф."}</p>
+                <p style={{textAlign:"justify"}} >{description || "Нет инф."}</p>
               </div>
             )}
           </div>
@@ -182,37 +182,38 @@ const App = () => {
       </div>
 
       <div className="columns-container" style={{marginTop:"100px"}} >
-        <div  className="column positive-column" >
-          <h3>Позитивные качества</h3>
-          <ul>
-            <li>{positiveQuality}</li>
-          </ul>
-        </div>
-        <div className="column negative-column">
-          <h3>Негативные качества</h3>
-          <ul>
-            <li>{negativeQuality}</li>
-          </ul>
-        </div>
+      <div className="column positive-column">
+    <h3>Позитивные качества</h3>
+    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+        <li>{positiveQuality}</li>
+    </ul>
+</div>
+<div className="column negative-column">
+    <h3>Негативные качества</h3>
+    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+        <li>{negativeQuality}</li>
+    </ul>
+</div>
+
       </div>
 
       <div className="compatibility-section" style={{marginTop:"100px"}} >
-        <h3>Самооценивание:</h3>
-        <p>{selfSummary}</p>
+        <h3 style={{color:"#3554B9"}}>Самооценивание</h3>
+        <p style={{textAlign:"justify"}}>{selfSummary}</p>
       </div>
 
       {/* Новый раздел для SummaryByOwnReviews */}
       {summaryByOwnReviews && (
         <div className="compatibility-section" /* className="summary-by-own-reviews"*/>
-          <h3>Мнение о колегах:</h3>
-          <p>{summaryByOwnReviews}</p>
+          <h3 style={{color:"#3554B9"}} >Мнение о колегах</h3>
+          <p style={{textAlign:"justify"}}>{summaryByOwnReviews}</p>
         </div>
       )}
 
       <div className="compatibility-section" style={{marginTop:"40px"}} >
-        <h2>Совместимость</h2>
+        <h2 style={{color:"#3554B9"}}  >Совместимость</h2>
         <div className="input-section">
-          <label htmlFor="compareIdInput">Сравнить с ID:</label>
+          <label htmlFor="compareIdInput">Сравнить с ID</label>
           <input
             type="number"
             id="compareIdInput"
@@ -225,10 +226,12 @@ const App = () => {
         {compatibility !== null && (
           <div className="compatibility-result">
             <h3> Оценка: {compatibility}%</h3>
-            <p>Совместимость с выбранным сотрудником {compatibility}%.</p>
+            <p style={{textAlign:"justify"}}>Совместимость с выбранным сотрудником {compatibility}%.</p>
           </div>
         )}
+        
       </div>
+      
     </div>
   );
 };
