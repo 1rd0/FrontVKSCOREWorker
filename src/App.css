@@ -6,8 +6,9 @@
 }
 
 /* Header Section Styling */
+/* Header Section Styling */
 .header-section {
-  background-color: #3554B9;
+  background: linear-gradient(to bottom, #000000, #3554B9); /* Черный к синему */
   padding: 20px 0;
   color: white;
   border-radius: 5px;

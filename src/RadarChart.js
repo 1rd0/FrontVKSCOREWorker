@@ -6,23 +6,23 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables); // Register all necessary components
 
 const RadarChart = ({ data }) => {
-  const labels = ['Leadership', 'Communication', 'Problem Solving', 'Teamwork', 'Adaptability'];
+  const labels = ['Лидерство', 'Коммуникативность', 'Решение проблем', 'Командная работа', 'Адаптивность'];
 
   const chartData = {
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Light green area fill
-        borderColor: 'rgba(75, 192, 192, 1)', // Darker green for the border
-        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
+        label: 'Оценки',
+        backgroundColor: 'rgba(34, 139, 34, 0.2)', // Светло-зеленый цвет для заполнения области
+        borderColor: 'rgba(34, 139, 34, 1)', // Темно-зеленый цвет для границы
+        pointBackgroundColor: 'rgba(34, 139, 34, 1)', // Темно-зеленый цвет для точек
+        pointBorderColor: '#fff', // Белый цвет для границы точек
+        pointHoverBackgroundColor: '#fff', // Белый цвет при наведении на точки
+        pointHoverBorderColor: 'rgba(34, 139, 34, 1)', // Темно-зеленый цвет границы при наведении
         data: data,
       },
     ],
   };
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -42,9 +42,9 @@ const RadarChart = ({ data }) => {
         },
         pointLabels: {
           font: {
-            size: 14,
+            size: 10,
           },
-          color: '#333', // Customize label color
+          color: '#3554B9 ', // Customize label color
         },
       },
     },

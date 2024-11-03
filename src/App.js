@@ -106,7 +106,7 @@ const App = () => {
   return (
     <div className="container">
       <div className="header-section">
-        <h1>Score Evaluation</h1>
+        <h1>ScoreWorker</h1>
         <div className="input-section">
           <label htmlFor="idInput">ID:</label>
           <input
@@ -116,7 +116,7 @@ const App = () => {
             onChange={(e) => setIdInput(e.target.value)}
             className="form-control id-input"
           />
-          <button type="button" className="btn btn-outline-light" onClick={handleSearch}>Search</button>
+          <button type="button" className="btn btn-outline-light" onClick={handleSearch}>Поиск</button>
         </div>
       </div>
 
@@ -132,21 +132,21 @@ const App = () => {
             aria-valuemin="0"
             aria-valuemax="100"
           >
-            {positiveReviewPercentage.toFixed(1)}% Positive
+            {positiveReviewPercentage.toFixed(1)}% Положительный
           </div>
         </div>
-        <p>{positiveCount} positive reviews, {negativeCount} negative reviews</p>
+        <p>{positiveCount} положительных отзывов, {negativeCount} отрицательных отзывов</p>
       </div>
 
       {/* Container for Radar Chart, Score, and Conclusions */}
       <div className="chart-score-container">
         <div className="score-conclusion-container">
           <div className="score-display">
-            <h3 className="score-title">Score</h3>
+            <h3 className="score-title">Оценка</h3>
             <h2 className="score-value">{score}/5</h2>
           </div>
           <div className="conclusions">
-            <h3>Conclusions:</h3>
+            <h3>Общая характеристика:</h3>
             <p className="conclusion">{conclusion}</p>
           </div>
         </div>
@@ -157,22 +157,22 @@ const App = () => {
 
       <div className="evaluation-sections">
         {[
-          { label: 'Leadership', score: leadership, description: leadershipDescription, key: 'leadership' },
-          { label: 'Communication', score: communication, description: communicationDescription, key: 'communication' },
-          { label: 'Problem Solving', score: problemSolving, description: problemSolvingDescription, key: 'problemSolving' },
-          { label: 'Teamwork', score: teamwork, description: teamworkDescription, key: 'teamwork' },
-          { label: 'Adaptability', score: adaptability, description: adaptabilityDescription, key: 'adaptability' },
+          { label: 'Лидерство', score: leadership, description: leadershipDescription, key: 'leadership' },
+          { label: 'Коммуникативность', score: communication, description: communicationDescription, key: 'communication' },
+          { label: 'Решение проблем', score: problemSolving, description: problemSolvingDescription, key: 'problemSolving' },
+          { label: 'Командная работа', score: teamwork, description: teamworkDescription, key: 'teamwork' },
+          { label: 'Адаптивность', score: adaptability, description: adaptabilityDescription, key: 'adaptability' },
         ].map(({ label, score, description, key }) => (
           <div key={key} className="evaluation-section">
             <div className="section-header">
-              <h3>{label} (Score: {score}/5)</h3>
+              <h3>{label} {score}/5</h3>
               <button className="toggle-button" onClick={() => toggleSection(key)}>
-                {expandedSections[key] ? 'Hide' : 'Show'} Details
+                {expandedSections[key] ? 'Скрыть' : 'Подробнее'} 
               </button>
             </div>
             {expandedSections[key] && (
               <div className="evaluation-content">
-                <p>{description || "Description not available"}</p> {/* Displaying the description */}
+                <p>{description || "Нет инф."}</p> {/* Displaying the description */}
               </div>
             )}
           </div>
@@ -195,13 +195,13 @@ const App = () => {
       </div>
 
       <div className="selfreview">
-        <h3>Self-review:</h3>
+        <h3>Самооценивание:</h3>
         <p>{selfSummary}</p>
       </div>
       <div className="compatibility-section">
-  <h2>Check Compatibility</h2>
+  <h2>Совместимость</h2>
   <div className="input-section">
-    <label htmlFor="compareIdInput">Compare with ID:</label>
+    <label htmlFor="compareIdInput">Сравнить с ID:</label>
     <input
       type="number"
       id="compareIdInput"
@@ -209,12 +209,12 @@ const App = () => {
       onChange={(e) => setCompareIdInput(e.target.value)}
       className="form-control"
     />
-    <button type="button" className="btn btn-outline-primary" onClick={handleCompare}>Check Compatibility</button>
+    <button type="button" className="btn btn-outline-primary" onClick={handleCompare}>Проверить</button>
   </div>
   {compatibility !== null && (
     <div className="compatibility-result">
-      <h3>Compatibility Score: {compatibility}%</h3>
-      <p>The compatibility with the selected employee is {compatibility}%.</p>
+      <h3> Оценка: {compatibility}%</h3>
+      <p>Совместимость с выбранным сотрудником {compatibility}%.</p>
     </div>
   )}
 </div>
