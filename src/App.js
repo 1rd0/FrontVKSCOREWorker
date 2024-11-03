@@ -29,7 +29,7 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://someapi.com/data?id=${idInput}`);
+      const response = await fetch(`http://localhost:5000/api/get/summary?id=${idInput}`);
       if (!response.ok) throw new Error('Failed to fetch data');
       const data = await response.json();
 
