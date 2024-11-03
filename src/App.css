@@ -151,3 +151,63 @@
 .evaluation-section {
   margin: 10px 0;
 }
+/* Стили для блока совместимости */
+.compatibility-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa; /* Светло-серый фон для выделения секции */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.compatibility-section h2 {
+  color: #3554B9; /* Темно-синий цвет заголовка */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Стили для поля ввода ID */
+#compareIdInput {
+  width: 200px; /* Ширина 60% */
+  max-width: 400px; /* Ограничение ширины */
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 1.1em;
+  border: 2px solid #3554B9; /* Цвет рамки соответствует цвету темы */
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Внутренняя тень */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#compareIdInput:focus {
+  border-color: #5498A3; /* Цвет рамки при фокусе */
+  box-shadow: 0 0 8px rgba(85, 120, 160, 0.4); /* Тень при фокусе */
+  outline: none;
+}
+
+/* Кнопка для проверки совместимости */
+.compatibility-section .btn-outline-primary {
+  margin-top: 10px;
+  font-size: 1.1em;
+  padding: 8px 20px;
+  background-color: #3554B9; /* Цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.compatibility-section .btn-outline-primary:hover {
+  background-color: #5498A3; /* Изменение цвета при наведении */
+}
+
+/* Результат совместимости */
+.compatibility-result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e9f7ef; /* Светло-зеленый фон для положительных результатов */
+  border-radius: 8px;
+  text-align: center;
+  color: #333232; /* Темный цвет текста */
+}
+ 

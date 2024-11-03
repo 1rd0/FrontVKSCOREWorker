@@ -5,6 +5,7 @@ import RadarChart from './RadarChart';
 
 const App = () => {
   const [idInput, setIdInput] = useState('');
+  const [compareIdInput, setCompareIdInput] = useState('');
   const [score, setScore] = useState(0);
   const [conclusion, setConclusion] = useState('');
   const [positiveCount, setPositiveCount] = useState(0);
@@ -12,6 +13,7 @@ const App = () => {
   const [positiveQuality, setPositiveQuality] = useState('');
   const [negativeQuality, setNegativeQuality] = useState('');
   const [selfSummary, setSelfSummary] = useState('');
+  const [compatibility, setCompatibility] = useState(null); // Новый стейт для совместимости
   const [expandedSections, setExpandedSections] = useState({
     leadership: false,
     communication: false,
@@ -84,6 +86,19 @@ const App = () => {
     }
   };
 
+  // Новый обработчик для запроса совместимости
+  const handleCompare = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/get/compatibility?id1=${idInput}&id2=${compareIdInput}`);
+      if (!response.ok) throw new Error('Failed to fetch compatibility data');
+      const data = await response.json();
+      setCompatibility(data.compatibility); // Установка совместимости в стейт
+    } catch (error) {
+      console.error("Error fetching compatibility data:", error);
+      setCompatibility(null);
+    }
+  };
+
   const toggleSection = (section) => {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
@@ -104,6 +119,8 @@ const App = () => {
           <button type="button" className="btn btn-outline-light" onClick={handleSearch}>Search</button>
         </div>
       </div>
+
+      
 
       <div className="progress-section">
         <div className="progress" style={{ backgroundColor: 'red' }}>
@@ -181,6 +198,27 @@ const App = () => {
         <h3>Self-review:</h3>
         <p>{selfSummary}</p>
       </div>
+      <div className="compatibility-section">
+  <h2>Check Compatibility</h2>
+  <div className="input-section">
+    <label htmlFor="compareIdInput">Compare with ID:</label>
+    <input
+      type="number"
+      id="compareIdInput"
+      value={compareIdInput}
+      onChange={(e) => setCompareIdInput(e.target.value)}
+      className="form-control"
+    />
+    <button type="button" className="btn btn-outline-primary" onClick={handleCompare}>Check Compatibility</button>
+  </div>
+  {compatibility !== null && (
+    <div className="compatibility-result">
+      <h3>Compatibility Score: {compatibility}%</h3>
+      <p>The compatibility with the selected employee is {compatibility}%.</p>
+    </div>
+  )}
+</div>
+
     </div>
   );
 };
