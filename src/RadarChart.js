@@ -44,7 +44,7 @@ const RadarChart = ({ data }) => {
           font: {
             size: 10,
           },
-          color: '#3554B9 ', // Customize label color
+          color: '#111 ', // Customize label color
         },
       },
     },

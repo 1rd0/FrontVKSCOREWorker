@@ -104,6 +104,8 @@ const App = () => {
   };
 
   return (
+   
+    
     <div className="container">
       <div className="header-section">
         <h1>ScoreWorker</h1>
@@ -218,8 +220,8 @@ const App = () => {
     </div>
   )}
 </div>
-
-    </div>
+</div>
+     
   );
 };
 
