@@ -1,38 +1,153 @@
-.App {
+/* General Container */
+.container {
+  width: 80%;
+  margin: auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Header Section Styling */
+.header-section {
+  background-color: #3554B9;
+  padding: 20px 0;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Input Section Styling */
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 450px;
+  margin: 20px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Styling for the ID Input */
+.id-input {
+  font-style: italic;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+/* Score and Conclusion Container Styling */
+.chart-score-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%; /* Использует всю ширину контейнера */
+}
+
+.score-conclusion-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Выравниваем элементы по левому краю */
+  text-align: center;
+  max-width: 300px;
+  margin-right: auto; /* Сдвигает весь блок влево */
+}
+
+.score-display {
+  margin-bottom: 20px;
+}
+
+.score-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #1a91b9;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: #1a91b9;
+}
+
+.conclusions {
+  max-width: 250px;
+  text-align: left;
+}
+
+.conclusion {
+  text-align: left;
+}
+
+/* Radar Chart Wrapper */
+.radar-chart-wrapper {
+  width: 350px;
+  height: 350px;
+  margin-left: auto; /* Сдвигает радарную диаграмму вправо */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Progress Bar Styling */
+.progress-section {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.progress-bar {
+  background-color: #d7ce15;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress {
+  background-color: #3554B9;
+  height: 50px;
+}
+
+/* Columns Container for Positive and Negative Qualities */
+.columns-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.column {
+  width: 45%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.positive-column {
+  background-color: #e0ffe0;
+}
+
+.negative-column {
+  background-color: #ffe0e0;
+}
+
+/* Section Header and Toggle Button */
+.section-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 10px;
+}
+
+.toggle-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
   color: white;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.toggle-button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Individual Evaluation Section Styling */
+.evaluation-section {
+  margin: 10px 0;
 }
